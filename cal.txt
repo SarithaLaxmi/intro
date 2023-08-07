@@ -1,0 +1,6 @@
+Here is the list of commands to execute calculator code
+1) open command line interface and locate to directory where the code file resides
+2) use the command "node <file_name>.js <operator> <operands> <operands>
+3) example, node cal.js add 3 5
+     returns the addition.
+     
