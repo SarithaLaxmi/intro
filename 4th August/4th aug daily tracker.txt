@@ -1,0 +1,37 @@
+Day 2: 04/08/2023 [Delivery is due post assessment on 05/08]
+
+1. Refer FB + LinkedIn API's :: Try some of the API's in Postman
+
+- Which API referred
+- What did you understand from the API's
+- What are the parameters + endpoints
+- What are the business utlities of the API's 
+
+2. To practice some of the quick NodeJS code bases :
+
+https://docs.solace.com/API/Messaging-APIs/NodeJS-API/node-js-home.htm
+https://tutorials.solace.dev/nodejs
+https://github.com/SolaceSamples/solace-samples-nodejs
+
+3. Github : https://www.freecodecamp.org/news/git-and-github-for-beginners/
+
+4. DB Schema --> Structure of the tables : Read | Read | Read :: Practice
+
+5. Refer --> https://docs.solace.com/Cloud/service-class-limits.htm
+
+6. Read and explain : What is an endpoint [NOT API endpoints --> Queue endpoint + topic endpoint]
+
+7. What is High Availability Architecture? what happens in High Availability Architecture
+
+8. Write a NodeJS code for :
+
+a. Create a dummy calculator :: Addition/Subtraction/Division [check for division by 0]
+b. parse a sample XML file using NodeJS and display the response in browser 
+ 
+9. Create a new Solace free a/c --> Create a new EBS service :: Deploy it in AWS --> Ohio region + Custom name for Message-VPN and Cluster
+
+
+
+
+
+

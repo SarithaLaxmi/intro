@@ -1,0 +1,368 @@
+
+i. Install a software Bandicam
+
+https://www.bandicam.com/
+
+
+--> Architecture :: API-First-Approach
+
+Martin Fowler :
+
+https://martinfowler.com/
+
+Chris Richardson :
+
+https://microservices.io/
+
+https://microservices.io/patterns/index.html
+
+==> What are the different message exchange pattern?
+
+- Point-to-point
+- Request-Reply/response
+- Event Driven Architecture == Pub-Sub model
+
+==> What is the need for Solace? OR What is the need for Event Broker Services?
+
+- With time :: The service versions will modify 
+- Everytime a service is updated ---> Inform all the susbcribers
+- Subscribers :: What is the version the subscriber wants to work with
+
+Netflix/Banking apps/Twitter/etc : Complex + large apps --> Tons of services [country/region specific]
+
+
+==> How does the services manage the request-reply model + Ingress-Egress flow how the state/permission/A&A would be managed [A&A - authentication and authorization]
+
+API's :
+
+- Public API's : FB API
+- Private API's : FB Advertisement Engine :: B2B contract --> FB Private API's :: A&A
+
+https://developer.linkedin.com/
+
+Free version of LinkedIn :: Fetch the user details
+
+Suddenly --> No data/no profile that could be fetched
+
+There was an endpoint update :: initial : http://<endpoint> ----------> https://<endpoint>
+
+Real estate :: Broker --> Record of all the available flats/PG's/Apt
+Zomato/Swiggy/Uber/Ola --> Brokers :: Facilitation :: <Consumer> vs <Business>
+
+Middleware :: Event Broker Services [EBS]
+
+- EBS keeps a track of the incoming and outgoing request-response OR messages
+- EBS ==> State of the messages :: How long should be the msg be available/who would have access to what messages
+- EBS ==> Ingress-Egress facilities are handled well
+
+Ingress --> Incoming requests
+Egress --> Outgoing responses
+
+==> Few million events that gets generated on a regular basis :: Capacity + Throttle
+
+a. What is the capacity of the tool/software/hardware to handle the request
+b. Subscribers --> Consume + Process :: What speed the subscriber can consume the data + Event is consumed BUT there is an error in consumption --> who will handle the error :: EBS
+
+c. How to handle the failover mechanism 
+
+d. Subscriber :: NO more events for next 30 mins
+
+
+==> How can I work with Solace? What are the different ways by which we can interact with Solace env :
+
+a. PubSub+ cloud
+b. CLI
+c. Solace API's 
+
+Solace :
+
+- Event Broker Service :: PubSub+ OR Solace API's 
+- Appliances
+
+Solace API's :
+
+- Solace supports multiple languages
+- Solace supports multiple protocols 
+
+https://solace.com/downloads/ --> Solace API's : Multiple language support :: C/Java/.NET/iOS/Python/NodeJS/etc
+
+WebGUI :: PubSub+ Cloud or PubSub+ software :: Using the Solace API's
+
+NodeJS : Sync + Async
+
+https://docs.solace.com/API/Messaging-APIs/NodeJS-API/node-js-home.htm
+https://tutorials.solace.dev/nodejs
+https://github.com/SolaceSamples/solace-samples-nodejs
+
+Documentation link for Solace : https://docs.solace.com/#splearning
+
+
+NodeJS :: 
+
+- How can I setup the servers/how to read files in NodeJS
+
+NodeJS ::
+
+a. Open source + free
+b. Syntaxes of NodeJS is easier for beginner 
+c. Extremely memory friendly footprint :: Mobile apps/IoT apps 
+d. Tons of documentation
+e. Java_Script based framework :: Server side framework
+f. With NodeJS :: Request-Response model :: Send and receive data based on the HTTP request 
+
+Try the programs either in VM/local machine :: NodeJS
+
+- NodeJS env
+- Notepad++
+- CMD
+
+NodeJS --> NPM :: Node Package Manager : https://www.npmjs.com/
+
+CentOS --> package management --> RPM packages :: RPM : Redhat package manager
+
+NodeJS :  Request-Response model :: Send and receive data based on the HTTP request 
+
+VM :: C:/nodecode
+
+Save a NodeJS file :: What is the extension :: .js
+
+File name: server.js
+
+To execute a NodeJS code with an editor like Notepad++ ::
+
+CMD --> Navigate to the directory [where the NodeJS code is present] --> node server.js [node <filename with extension[.js]]
+
+Hostname : 127.0.0.1
+
+What is this IP address? :: Loopback address
+
+Execute the server env in our local machine :: 3 different local IP address::
+
+- localhost
+- 0.0.0.0
+- 127.0.0.1
+
+Whenever an IP address ::
+
+Loopback : 127.0.0.1
+DHCP/DNS/Default Gateway : Wi-fi :: 10.x.x.x
+
+College network :: 192.168.x.x
+
+Classes in IP Addresses : 
+
+Class A : 0-126 : WAN
+
+Class B : 128-191 : MAN + Large internal n/w
+
+Class C : 192 - 223 : LAN
+
+Class D : 224 - 239
+Class E : 240-255
+
+<127.0.0.1> : Loopback address
+
+
+Port Numbers :: 
+
+23 --> Not working
+9090 --> working
+21 --> Not working
+2121 --> Working
+
+Computers : Hardware + Software apps :
+
+1. Physical Ports : USB port/Ethernet port - Hardware ports
+
+2. Software apps :: Virtual Ports :: 0-65535
+
+0-1200 :: Reserved for system protocols
+
+http: 80
+https: 443
+FTP : 21
+Telnet : 23
+
+1201 - 1300 :: Research purpose
+
+1301 - 65535 :: Custom applications
+
+Apache Server/Http server : 8080/9090/2121/3000 [NodeJS]
+
+MySQL Database :: 3306/3307
+
+http.createServer((req, res) ::
+
+http :: Package :: Ensuring the request-response model is working
+
+(req, res) :: parameters :
+
+req --> request being sent to the server
+res --> response from the server 
+
+Where is this server running ::
+
+<hostname>:<port number> 
+
+127.0.0.1: 2121
+
+Status Code :
+
+https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+
+All protocols communicate using Status Code :: True/False
+
+res.setHeader('Content-Type', 'text/plain')
+
+We can pass different types of content :: API/Request-Response/Web Service ::
+
+a. Text/Plain
+b. text/html
+c. XML
+d. JSON
+e. image
+
+Git : https://www.freecodecamp.org/news/git-and-github-for-beginners/
+
+PubSub+ Cloud :
+
+- Event Portal - Designer [design EDA apps + Catalog - Events | Schema | Application]
+- Event Streaming
+- Event Insights
+
+DB Schema --> Structure of the tables ==> What is the meta information of the tables
+
+Solace --> Schema ::
+
+Schema :: A set of guidelines/rules --> Set some properties + restrictions/validations
+
+test-employee-details  :: Define the rules for creating employee dataset 
+
+employee-first-name : string [min-max value]
+employee-age : int [min-max value]
+
+Storing the data rules :: In which format the rules are being specified :: 
+
+- JSON
+- XSD :: XML Schema Definition :: Schema pattern
+- DTD :: Document Type Definition
+- protobuf :: API driven approach
+
+XML --> Validation of XML data was done using DTD --> XSD
+
+Schema in Solace ::
+
+Application Domain :: What is the industry type of the project :: Banking-domain
+Rules & Validation :: Define the schema :: Schema style :: JSON/XSD/DTD/Protobuf + Define the data format
+
+Schema :: Application Domain ==========> <EBS Logic --> Data from the publisher --> check]
+
+Zomato --> Every order amount :: Float type and NOT integer
+
+EBS Transformation : Zomato-SmartWatch-App --> New Order --> Order value [int] =========> Event/msg [EBS :: check what is the data type of the order value] --> [EBS : int --> float [100 --> 100.00]] =========> Subscriber
+
+What is done with Cluster Manager? 
+
+Solace :: 2 types of event brokers ::
+
+a. Software based :: Create in the PubSub+ 
+b. Hardware based :: Appliance -> v3530/v3560
+
+==> Solace PubSub+ : Create an instance of Solace EBS 
+
+Whenever a new service is created :: Service has to be depolyed :: 
+
+Google.co.in --> Mumbai DC/Noida of Google
+
+Different locations of the DC's of AWS
+
+Services [Login/Audit/New order/product service/video service] --> Services are deployed in some DC
+
+EBS Instances :: Creating a Event Broker Service :: Deployed in a Datacenter --> That are supported by Solace
+
+EBS Instance [Account type in Solace - Developer Service class --> restriction : 1 EBS/account]  ---------------> All the activities of Solace event broker
+
+EBS Creation : https://console.solace.cloud/services/create
+
+
+Developer ::
+
+100 connections ::  Developer class --> Total number of client connection that the EBS can handle
+10GB Storage :: Developer class --> Storage size of the EBS
+
+
+EBS Instance [Account type in Solace - Developer Service class --> restriction : 1 EBS/account]  ---------------> All the activities of Solace event broker :: Different objects
+
+- Message/event data storage
+- Pub-Sub :: Event --> Topics --> messages 
+- Account activities
+- Queues
+- Topics
+- Event mechanisms
+- Logs
+
+100 connections ::  Developer class --> Total number of client connection that the EBS can handle ::
+
+--> term used is CLIENT and NOT Publisher-Subscriber
+
+--> Client ===> Business
+
+PaaS Environment :: PaaS --> Platform as a Service :: More you use, more you pay || Less you use, less you pay
+
+100 connections :: Concurrent/Simmultaneous :: At a time
+
+https://docs.solace.com/Cloud/service-class-limits.htm
+
+Solace PubSub+ :: EBS --> What are the deployment options :
+
+a. AWS - Amazon Web Services
+b. GCP - Google Cloud Platform
+c. Microsoft Azure
+d. Private Cloud
+
+Solace Broker :: Default version of Solace ver :: 10.4 [default] [10.x version] :: SolOS
+
+1. Solace :: Message VPN [what is VPN : Virtual Private Network [generic]] 
+2. Solace :: Cluster Name
+
+Naming of the video files ::
+
+Sce_01_video_01
+Sce_01_video_02
+
+Sce_02_video_01
+Sce_02_video_02
+
+Term :
+
+a. SMF : Solace Messaging Format
+b. What is an endpoint [NOT API endpoints --> Queue endpoint + topic endpoint]
+c. High Availability :: Single Node vs Multi Node architecture
+
+Quiz Session : Tue - Thu [8-10] :: Cross Group Quizzing
+
+- Finalize the list of topics
+- Each Group : 7 questions to another group || Answer 7 questions from another group
+- NO LOLLI questions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
