@@ -1,0 +1,13 @@
+Day 4: 08/08/2023
+
+1. Practice NodeJS code for sync + async - 3 each
+2. Create a calculator in NodeJS using async :: Add + Subtract + Multiply + Divide + Percentage
+
+3. Solace CLI --> show session :: What is the default unit of the Timeout?
+
+4. Practice :: Commands in Solace CLI
+
+5. Practice : Queue + Topic Subscriptions in WebGUI
+
+6. Try the Queue creation using Solace CLI
+

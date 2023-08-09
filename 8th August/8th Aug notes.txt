@@ -1,0 +1,705 @@
+
+1. Open the "Run"
+2. Navigated inside the directory 
+3. mkdir nodesol2
+4. cd nodesol2
+
+==> We will initialize a NodeJS application/code base
+
+Create an application :: Development + QA code + Dependencies [libraries/packages/etc etc] :: Structure --> Dependency manage
+
+==> We will initialize a NodeJS application/code base :: <from the root/dir/folder of the app> npm init
+
+npm init
+
+NPM : Node package manager : https://www.npmjs.com/
+init : initialization
+
+<from the root/dir/folder of the app> npm init 
+
+--> Ask some configuration details --> Insert the values as needed or keep the default or keep them empty
+
+--> package.json :: Package manager file [All the packages needed in the app, can be placed in this file] 
+
+{
+  "name": "converter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.7",
+    "express": "^4.18.2",
+    "mocha": "^10.2.0",
+    "request": "^2.88.2"
+  }
+}
+
+--> Sync vs Asynchronous
+
+New things : In the async func :
+
+- setTimeout : Tries to check how long the func loop can execute before the timeout is called
+
+- Promise.resolve() : Promise is a func call in NodeJS which states that :: Once the calling functions are in the Promise loop --> they will be executed
+
+Async feature --> In NodeJS --> 
+
+a. Promises :: will have different states :
+
+i. Resolve
+ii. Await
+iii. Reject
+
+
+- .then()
+
+Async --> NodeJS :: 
+
+a. generic func calls
+b. Loops within Promise.resolve()
+c. setTimeout
+
+Install the async package 
+
+C:\nodesample\nodesol2> npm install async
+
+async0.js : 
+
+function square(x) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(Math.pow(x, 3));
+        }, 2000);
+    });
+}
+
+async function output(x) {
+    const ans = await square(x);
+    console.log(ans);
+}
+
+MicroTask.js :: Promise.resolve()
+setTimeout(logG, 0);
+
+Code Syntax 
+
+Another state of Promise : Promise { <pending> }
+
+Promise --> Promise function (whose scope is resolved()) is called in another async function, await needs to be implemented. 
+
+Promise - Resolve - Await
+
+const async = require("async");
+
+
+function square(a, b) {
+	return new Promise(resolve => {
+		setTimeout(() => {
+			resolve(a + b);
+		}, 2000);
+	});
+}
+
+async function output(c, d, e) {
+	const ans = await square(c, d, e);
+	console.log(ans);
+	console.log(e);
+}
+
+async function output1(x, y) {
+	const ans1 = await square(x,y);
+	console.log(ans1);
+	// console.log(e);
+}
+
+output(10, 20, 20);
+output1(45, 45);
+
+Practice sync/async code base for NodeJS
+
+Anyone having Github issues?
+
+https://www.freecodecamp.org/news/git-and-github-for-beginners/
+
+Solace --> Within Solace
+
+- EBS --> Cluster Manager + Schema + App Domains
+- data centers
+- Port no. config
+- Solace CLI : How to connect through Putty/Hostnames/Management Creds/dir/cd /logs
+- Pub-Sub : Try Me
+- What is the structure of the connection :: Broker URL's 
+
+EBS --> Pub-Sub :: Queues
+
+1. What are queues? :
+
+- Storage of the messages/event data 
+- Event data/message packets that comes from publisher
+- Queue :: Temp storage :: The storage is used between Publisher events vs Subscriber events
+- Queues communicate with Topics to hold the information/data
+
+- Publishers would publish messages to the queues --> <Directly pass the data to the subs OR Hold the data for "X" period of time]
+
+--> What is present within the queues :
+
+a. message ID's
+b. meta information about the messages
+c. Replication information
+
+Queues in Solace : Queues can be of 2 types :
+
+a. Durable queues : 
+
+- Type of persistent queue : Queue remains :: "Guaranteed delivery"
+- Durable queues can only & only be removed by the administrator of solace
+- It is the queues that identifies the state of the subscriber [wrto the topics] 
+- Durable queues will load the messages from the pub apps, irrespective the state of the subs
+- If the sub app is offline, durable queue will wait/persist the message till the subs app is ONLINE
+
+b. Non-durable queue :
+
+- Temporary queue
+- Runs on the lifecycle of a consumer/subscriber
+- As long as the client state is RUNNING, the non-durable queue is ON
+- When the client has SHUT DOWN/OFF, the non-durable queue is deleted
+- Non-persistent 
+
+Solace handles both persistent & non-persistent event storages using queues.
+
+HAA :: High Availability Architecture :: 99.99% uptime
+
+Solace : Software EBS + Hardware EBS :: HAA :: 99.9% 
+
+Another feature of Solace queues is :
+
+a. Persistent Storage 
+b. Guaranteed Delivery
+
+2. Why do we need queues?
+
+- Storages
+- Ensures message delivery
+- Maintain the state of load between the PUB and SUB
+
+3. How to setup queues :
+a. Web GUI
+b. Solace CLI
+4. Queues parameters
+5. Queue stats
+
+How to setup the Queues using PubSub+ Cloud :: WebGUI
+
+cluster manager <-----event broker service <---- Queues
+
+Cluster Manager --> EBS --> Manage Tab --> Queues --> "Create Queue"
+
+Queue configuration/setting :
+
+a. Incomi==> Incoming & Outgoing : messages coming and going out wrto queue
+
+Queues can do bi-directional or uni-directional comm
+
+b. Message queued quota :: Size of the "overall" messages that can be present in the queue
+
+c. Access Type : 
+
+- Exclusive : s2 - s3 - s1 - s4
+- Non-exclusive : <Round robin fashion> 
+
+Subscription request has been made for a topic [/hello] to the queue in the following manner :
+
+-> S2
+-> S3
+-> S1
+-> S4
+
+Place an order in Zomato :
+
+Pub: New-Order --> Restaurant || Delivery --> Customer Service 
+
+Sub : Customer Support
+
+Accounting
+Delivery
+Restaurant
+
+d. Owners : 
+
+a. Whenever a queue is created :: Who is the owner from the client [client-username :: will have some specific permissions associated with them] 
+
+b. By default :: Queue owners would have the permission to DELETE the queues
+
+
+
+Walk to a restaurant --> Sit in the table :: Can you break the table & chair? :: NO :: Because YOU are NOT the owner of the table & chair --> Non-owner entity
+
+Queues :: Different businesses/services/organizations within a business
+
+Citi Bank :: Multiple queues in EBS :: 
+
+- Transaction-queue
+- login-queue
+- customerservice-queue
+
+citi-singapore
+citi-london
+citi-dubai
+
+e. Non-owner Permission 
+
+No Access 
+Disallows all access.
+Read Only 
+Read-only access to the messages.
+Consume 
+Consume (read and remove) messages.
+Modify Topic 
+Consume messages or modify the topic/selector.
+Delete 
+Consume messages, modify the topic/selector or delete the Client created endpoint altogether.
+
+Consume :: Read + remove the messages
+
+f. Maximum consumer count :: This is the number of clients that can get connected from the pub & sub sides
+
+==> Queue List :: Queue listing page
+==> Select a queue :: Navigate inside the details of that queue
+
+Queues | queue01 :: Details page
+
+a. Messages Queued
+
+b. Incoming vs Outgoing rate - At pace/speed the messages comes in and goes out of the queue
+
+- Will determine how the queue capacity is working
+
+- How well the messages/events are processed by the queue
+
+- How the pub & sub services are working
+
+- 100 msgs/sec vs 10,000 msgs/sec [Think about the capacity of the Solace EBS being used]
+
+Whenever a queue is  created --> The queue ideally would subscribe to the Topics
+
+Topic Subscriptions in Queues ::
+
+
+Queues --> Select the specific queue --> Subscriptions --> Add Subsccriptions
+
+Queue --> Topic Subscription --> Messages? [NO messages]
+
+
+Queue --> Topic Subscription [subscribed] --> Messages :: Add messages --> Publish messages to the topic
+
+--> Solace API's :: NodeJS/Java/Python/etc
+
+--> Solace PubSub+ :: TryME
+
+message exchange pattern :
+
+- Point-Point :: Direct comm :: Client-receiver
+
+- Pub-Sub comm pattern :: Comm is using the EBS + Queues
+
+Point-to-Point : 
+
+With point-to-point messaging, messages sent by the producer are processed by a "single consumer"
+
+Message Exchange Patterns:
+
+Most messaging applications use the following messaging exchange patterns:
+
+Publish-Subscribe
+Point-to-Point
+Request-Reply
+
+--> Created a queue with config details 
+
+--> Within the queue --> 2 Topic subscriptions 
+
+--> Try Me :: 
+
+a. Topic 1 :: Sub --> Pub :: There was no updated on the queue
+
+b. Topic 2 :: Simply published --> Subsccription in the queue got activated --< Message queue in the queue
+
+
+Queue :
+
+a. With or without subscribe :: The messages are queued
+
+b. MessageID : Message ID is synchronization ::
+
+Queue01 : Msg ID : 1-3
+Queue02 : Msg ID : 4
+
+Queue01 --> try-me : 	2023-08-08 13:14:33 
+
+
+Sequence Number:
+N/A
+Replication State:
+Not replicated
+Replication Mate Msg ID:
+N/A
+Expiry Time:
+N/A
+Replication Group Message ID:
+rmid1:2666d-d8556d5d799-00000000-00000004
+Delivery Eligible Time:
+N/A
+Partition Key:
+Partition Key Hash:
+0
+
+Queue02 --> try-me : 	2023-08-08 13:14:33 
+
+	
+Publisher ID:
+Sequence Number:
+N/A
+Replication State:
+Not replicated
+Replication Mate Msg ID:
+N/A
+Expiry Time:
+N/A
+Replication Group Message ID:
+rmid1:2666d-d8556d5d799-00000000-00000004
+Delivery Eligible Time:
+N/A
+Partition Key:
+Partition Key Hash:
+0
+
+Queue :: 2 set of configuration :: 
+
+Queue created --> Property :: BY default the queue created :: Durable
+
+Access Type of the queue :: Exclusive 
+
+What is the maximum limit that can be used for :
+
+a. Consumer count
+b. Size of message queued
+
+
+What is the total volume of data that my Solace account can hold? 
+
+Service Type: Developer
+
+Guaranteed messaging :: Storage capacity :: 10 GB
+Client connection :: 100
+
+Queue --> Owner --> Client-username :: Where can I add a new client-username? 
+
+Cluster Manager --> EBS service --> Manage tab --> Access Control --> Client user names
+
+<pub> :: Queue :: <sub> :: Who should send the acknowledgement : Acknowledgments :
+
+a. Is ack compulsory? :: Not always compulsory [Good practice to have the ack  BUT not compulsory] 
+
+Durable vs Non-Durable queues
+
+Durable queues :: ACK is MUST
+Non-Durarable queues :: ACK is not MUST
+
+b. Is it possible to No Ack? :: No acknowledgement --> NACK :: YES NACK can be enabled
+
+c. What will be sent as an acknowledgement? :: 
+
+message/topics from queues --> subscribed --> subscriber [services] :: Fetch/receive the message + Process the message
+
+As long as the message is NOT processed, Durable Queue --> The message is NOT deleted
+
+==> Subscriber would send the ACK to the EBS, when the message is processed
+
+==> When the EBS receives a confirmation that message has been processed ==> delete the message from the queue
+
+You created : What are these entities called in terms of Solace ? :: "Objects" in Solace
+
+- EBS
+- Pub & Sub
+- Queues
+- Topic Subscriptions
+
+===> Bunch of configurations
+
+Solace uses REST Architecture --> Every entity that is created is a Resource :: Each resource would have it's own unique/object ID
+
+Event ID from 07/08 : 
+
+Event ID
+16xfzbvaj
+
+Event ID from 07/08 : 
+
+Event ID
+16xfzcihj
+
+In Solace, every entity is an Object with a unique Object ID associated with it.
+ 
+Every time an EBS is created, by default --> Message-VPN gets created
+
+Message-VPN?
+
+Every Solace object + Every actions :: Within the message-VPN
+
+All actions [creating objects/configuring objects/deleting objects] that are performed in Solace PubSub+ cloud a/c --> Message-VPN
+
+Message-VPN : 
+
+--> Message :: Solace message
+
+--> VPN :: Virtual Private Network 
+
+Developer class --> Restriction :: 1 message VPN
+
+Solace CLI :: How to work with Queues : 
+
+- Client restrictions
+- Any sort of configuration of the parameters :: Solace CLI
+- CLI is cool
+
+--> Start the CLI :
+
+- Putty
+- Port 22 is open is Solace
+- Hostname
+- Management Creds
+
+dir
+
+cd logs
+dir
+
+command.log
+-rw-r--r--  appuser    10002 14114830 Aug 08 10:03 debug.log
+-rw-r--r--  appuser    10002  1215013 Aug 08 10:03 event.log
+-rw-r--r--  appuser    10002      865 Aug 04 11:01 kernel.log
+-rw-r--r--  appuser    10002   499562 Aug 08 09:55 system.log
+
+--> configure any objects :: 
+
+Standard prompt : solace>
+
+a. enable :
+
+solace#
+
+b. configure any of the object :: config or configure
+
+solace-(configure)#
+
+Config prompt state --> back to root :: home :: solace(config) ---> solace> 
+
+If :: Go down 1 level :: exit
+
+home :: takes back to the root level
+exit :: takes back to 1 level below 
+
+developer-production-bc64t4s47ll-solace-primary-0> enable
+developer-production-bc64t4s47ll-solace-primary-0# configure
+developer-production-bc64t4s47ll-solace-primary-0(configure)# home
+developer-production-bc64t4s47ll-solace-primary-0> enable
+developer-production-bc64t4s47ll-solace-primary-0# configure
+developer-production-bc64t4s47ll-solace-primary-0(configure)# exit
+developer-production-bc64t4s47ll-solace-primary-0# exit
+
+How to use help in Solace CLI? 
+
+?
+
+?? 
+
+Root of the Solace CLI : solace> ??
+
+List of Global commands --> show
+
+solace> show ? 
+
+
+
+show                   - 	Use this command to display a variety of
+                                     configuration and statistical information
+                                     about the router.
+
+
+Help based on a specific command : <command> ? :: show ? 
+ 
+- Want to see the list of queues in my Solace a/c
+
+- Want to see the list of message-vpn in my Solace a/c
+
+- Want to see the list of client-usernames in my Solace a/c
+
+
+show queue :: Command Invalid + Missing params
+
+Correct command :  show queue * [* - all]
+
+Flag Legends :
+
+
+Flags Legend:
+I - Ingress Admin State (U=Up, D=Down)
+E - Egress  Admin State (U=Up, D=Down)
+A - Access-Type         (E=Exclusive, N=Non-Exclusive)
+S - Selector            (Y=Yes, N=No)
+D - Durability          (D=Durable, N=Non-Durable)
+P - Priority            (Y=Yes, N=No)
+
+Queue == Spool 
+
+Step : show queue *  :: Returning the list of all queues in my Solace account
+
+Step : show queue queue01 :: Get access to a specific queue 
+
+Step : show queue queue01 detail : Can we fetch more details about a queue OR all the queues
+
+solace> enable
+solace# show <queries>
+
+solace> enable
+solace# configure --> solace-(configure)
+
+solace> enable
+solace# admin --> solace-(admin)#
+
+Solace CLI, what are the levels and the modes :
+
+1. User Exec : solace>
+
+<Comes at the start of the Solace CLI>
+
+
+2. Priviliged Exec : solace#
+
+<Reach the level : solace> enable >
+
+
+3. Global Config : solace-(configure) 
+
+<Reach the level : solace# configure >
+
+
+4. Global Admin Exec : solace-(admin) 
+
+<Reach the level : solace# admin >
+
+
+show message-vpn
+
+ Invalid command input
+        show message-vpn
+                        ^
+         -> missing parameter
+
+ show message-vpn message-vpn-01 detail
+
+is there a command for session? :: To check the session details? :: show session
+
+show session detail
+
+Invalid command input
+  
+      show session detail
+                     ^
+         -> unexpected parameter
+
+
+==> Create a queue in the message VPN using Solace CLI
+
+Since a new object would be created --> Global Config
+root > enable --> configure
+
+
+1. Before creating the queue :: Define the message-spool :: message-VPN
+
+get inside the:  message-spool message-vpn <my-message-vpn-name> 
+
+solace-primary-0(configure/message-spool)
+
+2. Command to create the queue :
+
+create queue <queue name>
+
+create queue queuecli01
+
+3. After the queue is created :: Size of the queue ::
+
+max-spool-usage <value = MB]
+
+max-spool-usage 50
+
+4. Permission :: Owner + Non-owner
+
+By default :: owner --> default 
+
+Non-owner :: command : permission all <type of permission> 
+
+permission all consume
+
+5. Ensure that :: The queue object that's created --> State of the object should be always ON
+
+Any object that is created :: SHUT or NO SHUT state
+
+The queue that is created --> NO SHUT state :: command : no shut
+
+6. See the queue that we just created
+
+show queue <queue name> 
+
+show queue queuecli01
+
+7. Detailed state of the queue : 
+
+show queue <queue name> detail
+
+show queue queuecli01 detail
+
+8. Subscribing to a Topic :
+
+subscription topic <name of the topic>
+
+subscription topic hello-cli 
+
+Try creating queue from User Exec level/mode : 
+
+solace> create queue queuecli02
+
+ Invalid command input
+        create queue queuecli02
+               ^
+         -> unknown command, or command not available in current mode
+
+
+Moving from one queue to another queue + Getting into the config state of a queue with a new session ::
+
+enable
+configure
+
+message-spool message-vpn <name of the message-vpn>
+
+developer-production-bc64t4s47ll-solace-primary-0(configure/message-spool)# queue queuecli01
+developer-production-bc64t4s47ll-solace-primary-0(configure/message-spool/queue)# show queue detail
+developer-production-bc64t4s47ll-solace-primary-0(configure/message-spool/queue)# queue queue03
+
+ Invalid command input
+        queue queue03
+        ^
+         -> unknown command, or command not available in current mode
+developer-production-bc64t4s47ll-solace-primary-0(configure/message-spool/queue)# exit
+developer-production-bc64t4s47ll-solace-primary-0(configure/message-spool)# queue queue03
+developer-production-bc64t4s47ll-solace-primary-0(configure/message-spool/queue)
+
+
+
+
