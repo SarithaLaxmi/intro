@@ -1,0 +1,102 @@
+
+Day 5: 09/08/2023
+
+1. Try the Queue creation using Solace CLI
+2. Use the pub-sub services created with Atin and try to populate the queue created using Solace CLI
+3. Refer the notes for relationship between : <Pub> : Events + Messages + Topics + Queue : <Sub>
+4. Read about "Event Streaming" || How event streaming works in EDA
+5. Practice queue-template creation using WebGUI and Solace CLI with different configurations
+6. Read the link about Topic design and hierarchy :
+https://solace.com/blog/topic-hierarchy-best-practices/
+
+Topic Hierarchy : Domain/Object-type/Verb/Version/
+
+7. https://docs.solace.com/Messaging/Wildcard-Charaters-Topic-Subs.htm
+
+
+
+enable
+configure
+
+
+message-spool message-spool --> message-vpn
+
+message-spool message-vpn message-vpn-01
+
+(configure/message-spool)
+
+==> create queue template <qt name> 
+
+
+create queue-template qtcli01
+
+(configure/message-spool/queue-template)#
+
+==> Show the queue template list :
+
+show queue-template *
+
+==> Show the details of a queue-template :
+
+show queue-template <queue-temp name>  detail
+
+show queue-template qtcli01 detail
+
+==> Set a name filter for the queue-template
+
+(configure/message-spool/queue-template)# name-filter <name>
+
+name-filter zomato/customers/pin/*
+
+==> Modify the message queue size :
+
+(configure/message-spool/queue-template)# max-spool-usage 70
+
+
+developer-production-bc64t4s47ll-solace-primary-0(configure/message-spool/queue-template)# permission all consume
+developer-production-bc64t4s47ll-solace-primary-0(configure/message-spool/queue-template)# permission all modify-topic
+
+
+Queue Template :: Durability Override 
+
+By default :: Whenever a client creates a queue template :: By default :: Durable nature
+
+Modify the state of this durability of the queue :
+
+(configure/message-spool/queue-template)# durability-overview [none | Non-Durable] 
+
+==> change the durable status of the queue-template : durability-override [none | non-durable]
+
+At the time of creating a queue template, if the durability status is : Non-Durable, it will remain Non-Durable
+
+==> Modify the access type :
+
+solace-primary-0(configure/message-spool/queue-template)# access-type [exclusive | non-exclusive]
+solace-primary-0(configure/message-spool/queue-template)# access-type non-exclusive
+
+==> How to enable/disable OR allow/disallow Consumer Acknowledgement Propagation [ACK]
+
+Disable the consumer-ack 
+
+(configure/message-spool/queue-template)# no consumer-ack-propagation
+
+show queue-template qtcli01 detail
+
+==> Enable consumer ack
+
+(configure/message-spool/queue-template)# consumer-ack-propagation
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
