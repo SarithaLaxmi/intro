@@ -1,0 +1,313 @@
+Term :
+
+a. SMF : Solace Messaging Format
+b. What is an endpoint [NOT API endpoints --> Queue endpoint + topic endpoint]
+c. High Availability :: Single Node vs Multi Node architecture
+
+Quiz Session : Tue - Thu [8-10] :: Cross Group Quizzing
+
+- Finalize the list of topics
+- Each Group : 7 questions to another group || Answer 7 questions from another group
+- NO LOLLI questions
+
+Files : Data/Config/API details/Credentials/Dump the entire data
+
+File types : 
+
+- .txt
+- .xml
+- .json 
+- Excel/Word doc
+
+File Reading + File Writing
+
+E1 : Need --> NodeJS file [.js file] + .txt file [ref file] 
+
+- Write a NodeJS code 
+- Read from a .txt file
+- Data would be displayed 
+
+file name : filefs1.js - node code
+ref file : node1.txt
+
+--> Create the text file : node1.txt 
+--> Add some data 
+--> Write the node code
+
+JS reads from top to bottom, unless, there are specific calls are made
+
+E1 : fs.readFileSync
+E2 : fs.readFile
+
+Dynamic programming languages : JS/NodeJS/Python/Ruby/Scala/GoLang 
+
+If sync method/func is to be used :: Method ending with the word "sync" --> readFileSync()
+If async method :: default :: readFile()
+
+function (err, data) {
+   if (err) return console.error(err);
+   console.log(data.toString());
+
+
+Callback functions - Function within function
+
+function (err, data) { 
+
+//code
+
+}
+
+
+fs.readFile('node1.txt', function (err, data) {
+   if (err) return console.error(err);
+   console.log(data.toString());
+});
+
+
+1st func : readFile :: Inside the readFile() param :: "file name == node1.txt" 
+
+[executing a check function] :: 
+
+2nd func: function (err, data) {
+   if (err) return console.error(err);
+
+
+Before the action --> console.log(data.toString());
+
+
+//non-blocking code - async code
+
+//even with errors in the callback block :: remaining code would execute with the error logs
+
+
+var fs = require("fs");
+
+fs.readFile('node.txt', function (err, data) {
+   if (err) return console.error(err);
+   console.log(data.toString());
+});
+
+console.log("Program Ended");
+console.log("Program Ended2");
+
+
+==> How to read the text files
+==> Within the text files :: Operate on the file :
+
+- Sync
+- Async
+
+==> flow of the callback func
+
+======> Read a JSON file :: JavaScript Object Notation
+
+1. Why do we use JSON files ?
+
+a. JSON are mainly used for data carrier 
+b. One of the main areas of JSON files utility :: Configuration
+c. Why use JSON files :: <why not XML> :: JSON file processing is FASTER than XML or SQL Databases :: Processing faster --> Traversing the data + Locating a data is faster [because it uses light-weight JS]
+
+2. What is the format in which the data is stored in JSON file: 
+
+a. Key-Value pair format
+b. Key-value pair should be "unique" 
+c. Keys can have a string/number/float/list [collection] as a value
+
+fname: "Tom"
+age: 30
+
+
+emp_id : "id"
+{
+emp_fname: "Tom"
+}
+
+
+customer_fname: "Tom" --> Incorrect way to identify a unique data set
+
+Use ID's as the primary keys
+
+[{"name":"Solace1",
+
+"age":25,
+
+"language":["NodeJS","Event","Messaging"]}
+
+
+==> Create the JSON file [users1.json]
+==> Create the NodeJS file [json1.js]
+
+both the files are in the same dir
+
+Incorrect JSON file : error on the JSON file structure:
+
+node: internal/modules/cjs/loader: [Not from custom code base BUT NodeJS internals] 
+
+CJS --> Common JavaScript
+
+Solace : 
+
+console.solace.cloud
+
+Status Dashboard of Solace PubSub+ :
+
+a. High Avalability --> Single Node
+b. DMR Cluster
+
+i. Hostname : mr-connection-vh0scnp4ytw.messaging.solace.cloud
+ii. Cluster Name
+iii. Message-VPN
+
+c. Management Access : User + Passwd
+
+==> What is a cluster? :: Collection --> Servers/Databases
+
+--> Hostname
+--> High Availability :: Single Node
+
+
+Nodes :: Invidual Hosts ==> Machines [Physical/VM] 
+
+The EBS service that we are running using the Developer class a/c --> Running on a single node --> HostName
+
+Whenever a server instance is created [physical/VM] :: Will have a hostname associated
+
+Solace PubSub+ :
+
+a. EBS --> Running on a cluster
+b. How many nodes on the cluster --> 1 [Single Node] 
+c. The node will have a Host Name 
+d. Node will also have a credentials for access
+
+Using Putty :: Connect from a Windows machine to a Linux machine
+
+Tool :: Putty --> Protocol (SSH : 22) :: Local machine [Windows] ---> Remote machine [PubSub+ cloud is running] [hostname, etc is provided] 
+
+
+Tools available :
+
+a. Putty - Windows OS
+b. OpenSSH  - Linux/Mac OS
+
+Local :: Laptop/Desktop [windows] --> Remote [Node on which Solace EBS is running] --> mr-connection-vh0scnp4ytw.messaging.solace.cloud [hostname is available]
+
+Are all the port open? Yes or NO 
+
+Never a good practice to keep all the port numbers opened :: because if the ports are open ==> chances of unauthorized access and cyber attacks that can happen
+
+If SSH communication has to happen :: Putty :: Need to keep Port 22 open
+
+How to open + check if port 22 is opened in Solace account? 
+
+How to check the Port Number --> 
+
+Solace Console --> Cluster Manager --> CLick on the service [EBS] --> Manage Tab --> Port Configuration ==> Click on ... and select Edit --> Management --> Save
+
+Started the Putty --> Copied the Management Editor Username --> Entered in Putty --> Copied the Management Editor Password [selected the password + ctrl-c] --> Paste the password in putty --> A "single RIGHT-CLICK" from my mouse
+
+Connect to the Putty? 
+
+Session getting killed is a common problem :: How to resolve this problem? 
+
+Putty --> Connections --> Seconds between "keep alive" [keeps sending heart beats between the Local m/c and remote server] 
+
+Putty :: Solace CLI --> All the Solace commands are worked using Solace CLI
+
+--> Solace PubSub+ Cloud :: GUI
+--> Solace CLI [Command Line Interaction] :: Solace Commands
+
+- dir
+
+- cd /logs
+
+- dir
+
+Different log files in Solace : 
+
+a. command.log
+b. debug.log
+c. kernel.log
+d. system.log
+
+Working with EBS  :: 
+
+
+Diagram :
+
+1. What is the Solace "layer" - Event Broker Service
+
+2. What is "Shipping", "Customer History", "Credit Auth", "Email"  --> Subscriber clients/services/consumers
+
+3. What is mobile app/catalogue app/storefront app --> Publishers Clients/Services/Consumers
+
+Publisher <==EBS Service==>  Subscriber 
+
+Solace Console ==> Where can we publish or subscribe to a message OR topic? ==> Try-Me
+
+
+
+Path :: Endpoint :: What will this endpoint hold --> Secure Web Service [WSS]
+
+Publish Path [Broker URL]: wss://mr-connection-vh0scnp4ytw.messaging.solace.cloud:443
+
+Subscribe Path [Broker URL]: wss://mr-connection-vh0scnp4ytw.messaging.solace.cloud:443
+
+Hostname of the EBS :: mr-connection-vh0scnp4ytw.messaging.solace.cloud
+
+Both Pub & Sub are pointing to the same path :: Port Number : 443 [https :: Channel of data transferring would be secure]
+
+
+<Publisher> [Establish Connection ==>   Broker URL --> the location where EBS is residing] <Subscriber>
+
+Broker URL :: <Broker> + <URL>
+
+Event Broker service :: Can be of 2 types : "Software" + Hardware 
+
+If the Event Broker is a software service --> It has to run as a service :: URL/URI [API endpoints] 
+
+In order to access the event broker service [software nature] --> URI or URL :: Broker URL --> Where the broker service is running ["path" to my host + "port number"]
+
+Quick question : What resides in Endpoints? :: Service --> Web Services or the API endpoints --> business feature and functionalities --> Schema, Application Domain, Entity relationships
+
+Which side to connect first ? Sub or Pub?
+
+--> Subscribers :: There is a demand on the subscriber end, the EBS will try to check what are the incoming events/messages from Publisher
+
+
+Topic ==> Is a chapter in a book
+
+[Publisher] ---> [Publish to the topic : try-me] ------------>  [EBS : Broker URL] <------------- [Topic - try-me] <--- Subscriber-Service [Print]
+
+Once a message is published ---> Publisher is NOT bothered who is consuming the message, what happens to the message, who subscribes to the message, what is happening with the message
+
+Publisher :: Amazon --> New-Order-Service :: Captures the order details ---> Push it forward
+
+The publisher is publishing it's own topics [t1]
+
+The subscriber is subscribing to it's own topics [t2] 
+
+Step 1: "Publishing" to the topic  : try-me-2 :: Success
+Step 2: "Subscribe" to the topic  : try-me-2 :: Topic listing is working BUT the event/message has NOT been captured
+
+Create a new account [today] in Zomato --> Offers from [today] / Discounts from [today] 
+
+
+===> Publishers --> Once a topic [messages + events is published] --> only and only the subscribed topics/services can get the details
+
+Solace Pub-Sub topics are case sensitive
+
+Messages can be published in 2 ways :: Solace :: 
+
+a. Binary
+b. text
+
+Subscriber side :: List of topics being subscribed to
+Publisher side :: There is NO list of topics being published
+
+From the publisher side :: If a topic is being published and the Topic has a subscriber on the subcriber side, every new published message will be available for subscription by the subscriber service
+
+If the above is NOT the behavior, for every topic subscriptions, millions of new topics would have to be created.
+
+Topic : New-Order :: Order details different [messages are different] 
+
+Throttle Request

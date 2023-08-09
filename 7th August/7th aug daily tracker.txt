@@ -1,0 +1,13 @@
+Day 3: 07/08/2023
+
+1. Read a text file + HTML file + JSON file using async method in NodeJS [1 program or 3 different programs]
+2. Practice with different use cases : 
+
+- Try Me : Pub-Sub scenario 
+- Get the hands cleared on Solace CLI Access
+
+
+
+
+
+
