@@ -1,0 +1,19 @@
+Email: dibya@ecdzone.com
+
+1. Use the reference of YouTube[YT] : 
+
+S1 : A new user account is created in Gmail/YT
+S2 : The user logs in to YT using the account
+S3 : Create a subscription service in YT
+S4 : User :: Create a channel
+S5 :: user --> channel --> uploads a video
+
+What are the publish + subscribe services that will be utilized?
+
+2. Create your daily activity sheet in Google Docs Sheet + Share with Dibya
+
+3. Put all daily activities in Google Drive, unless, otherwise informed
+
+4. Create your Github account
+
+
