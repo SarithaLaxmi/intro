@@ -1,0 +1,631 @@
+Weekly Assignment :: Coverage till Friday : 1pm 
+
+Weekly assessment :: Solace CLI + Solace PubSub+ WebGUI [No NodeJS]
+
+Sheet updates/Google Doc updates : 
+
+a. Notifications ON : Activity Tracker 
+b. Github : Notification : Collab on the repo : Commit --> Notification
+
+IF NOTIFICATIONS ARE NOT ON : Once in 3-4 days, send an update email. 
+
+Solace Topic YouTube link : 
+
+https://www.youtube.com/watch?v=PP1nNlgERQI
+
+fxstream/*/*
+
+zomato/city/*/*
+
+zomato/city/* 
+
+One of the natures/restriction in * wildcard is :: It can ONLY navigate a single level
+
+zomato/city/* : zomato/city/Hyd
+
+fxstream/*/* : zomato/city/Hyd/Banjara-Hills
+
+In wildcard /> : Multi-level matching 
+
+Wildcard subject : 
+
+animals/domestic/dog*
+
+Matches that are allowed :
+
+animals/domestic/dog
+animals/domestic/doggy
+
+Matches that are NOT allowed :
+
+animals/domestic/dog/beagle
+animals/domestic/cat
+
+Example 2 : Combine different wildcards together:  animals/*/cats/>
+
+Matches possible : 
+
+animals/domestic/cats/tabby/grey
+
+animals/wild/cats/leopard
+
+animals/*/*/cats/>
+
+Login to Solace Console : 3 main sections in Solace :: 
+
+a. Mission Control : Cluster manager :: Event Streaming
+
+b. Event Portal : Application Event Architecture : App Context/Schema/Designer
+
+c. Event Insights 
+
+
+Log files :: cd /logs : Solace CLI :: 4 types of log files :: data file
+
+Visualization + Monitoring 
+
+Enterprise Apps : 2 set of reporting :
+
+- Collect the data :: Metrics
+
+- Productive :: Metrics should be presented in a user-friendly manner ::  Visualization
+
+Metrics [collecting the data/log/etc] + Visualization [representing the metrics - graphs/colors/beautification]
+
+Event Insights :: Work with visualization + enterprise monitoring tools :
+
+a. DataDog : https://www.datadoghq.com/
+b. Splunk : https://www.splunk.com/
+
+Solace Console --> Manage --> Queues --> Queue Templates --> <Inside a template> :: "Client Profile"
+
+Solace Console --> Manage --> Queues --> <Inside a specific queue> :: Owner [Edit] :: "Client-usernames"
+
+What is client profile & client-usernames
+
+Console --> Manage --> Access Control --> 
+
+a. Client Profiles --> cannot create a new client profile from access control
+b. ACL Profiles --> Create the ACL profile from the access control
+c. Client Usernames --> Can create client-username from access control
+
+What is ACL? :: Access Control List
+
+MQ-Training : MS Team link1 for MQ :: Authorized to attend the training :: Allowed or Denied
+
+Comm-Training : MS Team link2 for MQ :: Authorized to attend the training :: Allowed or Denied
+
+Solace-Training : MS Team link3 for MQ :: Authorized to attend the training :: Allowed or Denied
+
+Who all can access your Gmail account : Users --> Allowed or Denied
+
+Workspace/Any other resource on the network OR on internet :: Will have permissions associated [Accees] :: Allowed | Denied
+
+ACL : Networks :: 
+
+Every activity that you do :: As a user/client :: Try to access the system/resources/network/infrastructure :: Permission :: Allow | Deny
+
+ACL : Access Control List
+
+ACL Matrix :: 
+
+Objects vs Users
+
+Objects :: Solace Objects [Message-VPN, Queues/QT/Topics/Pub-Sub]
+
+Users :: The services [MSA] which tries to communicate with Solace Objects
+
+https://docs.solace.com/Security/ACL.htm
+
+ACL --> Create some rules :: What/who is allowed and who is NOT ==> Policy
+
+Message-VPN :: message-spool + ACL Profiles
+
+1. There will be policies based on the access criteria
+2. Access criteria :: Objects + Users
+
+3. Objects --> Solace objects 
+4. Users/client-usernames --> Clients who would want to connect to the message-VPN + clients who wants to pub-sub messages in EBS
+
+Create a client-username : cu01
+
+- Enable : ON or OFF
+
+-->Whenever a Client-Username is created :: 2 bindings that needs to be done :
+
+a. Client-Profile
+b. ACL-Profile
+
+Inside a client-username :
+
+- Stats
+- Queues owned by this client-username
+- Topic endpoints owned by this client-username
+
+
+Step1 : Access Control --> Client Username --> Created a new client-username :. Enabled + Client profile + ACL profile :: Default 
+
+Step 2: Inside the newly created client-username + check --> queues/topic owned
+
+Step3 : Created a new queue --> assigned the owner with the newly created Client-username
+
+Step4 : Check the client-username --> queue ownership is available or not
+
+==> Create the client usernames using Solace CLI
+
+1. Create and configure the client-username
+
+enable
+configure
+
+solace-primary-0(configure)# : 
+
+
+create the client-user
+
+create client-username <username> message-vpn <message-vpn-name> 
+
+create client-username cucli01 message-vpn message-vpn-01
+
+(configure/client-username)#
+
+2. Configure in Client-user : assign the ACL Profile
+
+
+a. Go inside the client-username :
+
+client-username <username> message-vpn <mvpn-name> 
+
+client-username cucli01 message-vpn message-vpn-01
+
+-solace-primary-0(configure)# client-username cucli01 message-vpn message-vpn-01
+
+--> Assign a ACL profile to the CU
+
+(configure/client-username) : acl-profile <name of the profile> 
+
+acl-profile default
+
+3. Configure in Client-user : assign the Client-Profile
+
+(configure/client-username) : client-profile <name>
+
+client-profile default
+
+(configure/client-username)# client-profile default
+
+4. To see the list of the client-usernames :
+
+(configure/client-username)# show client-username *
+
+5. Enabling/Disabling of the client-username 
+
+(configure/client-username)# no shutdown
+
+ACL Profile :: Policies :: Allowed or Denied
+
+
+Solace console --> Manage --> Access Control --> ACL Profiles
+
+Client-usernames :: connect to a message-vpn
+
+
+ACL profile : acp01
+
+
+a. Client-connect : If the ACL profile is binded to a client-username : is it for Allow or Deny
+
+b. Publish Topic : Whether the client-username with which "this" ACL profile is binded : will allow  for topic publish
+
+c. Subscribe Topic :  Whether the client-username with which "this" ACL profile is binded : will allow  for topics can be subscribed
+
+
+
+
+Publish Topic --> ACL Profile [client-user] : Allowed :: STOP a few --> list of exceptions
+
+Client-connect --> IP Address :: Address format in exception :: CIDR format
+
+What is CIDR : Classless Inter Domain Routing
+
+IP address :: CIDR format :: With CIDR format, data routing becomes very efficient
+
+192.168.1.10/15
+192.168.1.10/24
+
+Step 1: Create the ACL profile :: Allow all 3 permissions 
+
+Step 2: Where can we use the ACL profiles :: Binding the client-usernames
+
+==> Solace CLI :: ACL Profile
+
+--> Create an ACL Profile + Configure the ACL Profile
+
+enable
+configure
+
+==> create the acl profile 
+
+create acl-profile <profile-name> message-vpn <mvpn-name>
+
+create acl-profile aclcli01 message-vpn message-vpn-01
+
+(configure/acl-profile)#
+
+==> Navigate inside the ACL profiles 
+
+solace(configure)# acl-profile <profile-name> message-vpn <mvpn-name>
+
+acl-profile aclcli01 message-vpn message-vpn-01
+
+==> Configure the ACL profiles :: Client-connect status
+
+(configure/acl-profile)# client-connect
+
+(configure/acl-profile/client-connect)#
+
+Policy/access for the client-connect :: default-action :: allow or deny
+
+(configure/acl-profile/client-connect)# default-action allow
+
+==> Bind a client-username with ACL profile
+
+a. Check the list of client-usernames :: configure mode in CLI --> show client-usernames
+
+exit
+exit
+
+(configure)# show client-username *
+
+cucli01 
+
+
+b. Inside the client-username : 
+
+client-username <username> message-vpn <mvpn-name> 
+
+client-username cucli01  message-vpn message-vpn-01 
+
+
+c. Bind the username with the ACL profile :
+
+(configure/client-username): acl-profile <profile name>
+
+acl-profile aclcli01
+
+ERROR:  Client Username cucli01 must be shutdown to change the ACL profile
+Command Failed
+
+(configure/client-username)# shutdown
+
+developer-production-bc64t4s47ll-solace-primary-0(configure/client-username)# shutdown
+All clients using this Client Username will be disconnected.
+Do you want to continue (y/n)? y
+
+After the shut-down : 
+
+(configure/client-username)# acl-profile aclcli01
+
+Why the need for the shut down of a client-username IF ACL profile is to be changed?
+
+==> Started a new session :: Further config the ACL profile
+
+enable
+configure
+
+(configure)# acl-profile aclcli01
+
+ Invalid command input
+        acl-profile aclcli01
+                            ^
+         -> missing parameter
+
+
+acl-profile aclcli01 message-vpn message-vpn-01
+
+==> ACL Profile (configure/acl-profile)# : Set the permission for Publish a topic
+
+
+(configure/acl-profile)# publish-topic
+
+(configure/acl-profile/publish-topic)
+
+Next step :: Add the permission :: 
+
+default-action allow/deny
+
+(configure/acl-profile/publish-topic)# default-action allow
+
+
+==> How to set the exceptions in Publish-topic :
+
+(configure/acl-profile/publish-topic)# exception <topic name/structure/taxonomy>
+
+(configure/acl-profile/publish-topic)# exception animals/domestic/cats
+
+-solace-primary-0(configure/acl-profile/publish-topic)# exception animals/domestic/cats
+ERROR:  This command can no longer be used. The replacement command is configure
+
+ > acl-profile > publish-topic > exceptions.
+Command Failed
+
+
+-----------------
+(configure/acl-profile/publish-topic)# exceptions animals/domestic/cats
+
+ Invalid command input
+        exceptions animals/domestic/cats
+                   ^
+         -> invalid parameter
+ Expected one of the following:
+      smf                      - Exception list uses SMF topic syntax.
+      mqtt                     - Exception list uses MQTT topic syntax.
+      list
+
+Working command : exceptions list animals/domestic/cats
+
+exceptions list animals/domestic/cats smf
+
+exceptions list animals/domestic/dogs animals/domestic/rabbit
+
+list : collection :: can be repeated --> update the exception list
+
+exceptions list animals/domestic/dogs animals/domestic/rabbit
+
+==> Subscribe Topic
+
+(configure/acl-profile/publish-topic)# exit
+
+developer-production-bc64t4s47ll-solace-primary-0(configure/acl-profile)#
+
+(configure/acl-profile)# subscribe-topic
+
+developer-production-bc64t4s47ll-solace-primary-0(configure/acl-profile/subscribe-topic)#
+
+==> Permission to the subscribe topic : default-action --> allow | deny
+
+(configure/acl-profile/subscribe-topic)# default-action allow
+
+
+==> Add the exception to the subscribe topic :
+
+(configure/acl-profile/subscribe-topic)# exceptions list animals/domestic/>
+
+exceptions list animals/domestic/* smf
+
+Publish-topic or Subscribe-topic in ACL profile :: Exception list :: default protocol is SMF
+
+
+(configure/acl-profile/subscribe-topic)# exceptions list animals/jungle/* mqtt
+
+ACL Pub/Sub-topics :: Exception list :: MQTT --> SMF
+ 
+
+
+==> delete
+
+(configure/acl-profile/subscribe-topic)# delete animals/jungle02/*
+
+ Invalid command input
+        delete animals/jungle02/*
+        ^
+         -> unknown command, or command not available in current mode
+
+
+What is the way to see the details of delete command, if any? 
+
+delete ?
+
+ Invalid command input
+        delete ?
+        ^
+         -> unknown command, or command not available in current mode
+
+
+How to delete a subscriber-topic exception list of ACL profile using Solace Command
+
+Everything that we create in Solace :: Object
+
+generic commands :
+
+- show
+- create
+
+Whenever an entity is to be created :: create <thing> 
+
+==> Solace Console --> Manage --> Access Control --> Client Profiles
+
+Analogy :
+
+1. Vijay : Permission to attend Solace training : ACL 
+2. Vijay : Skillsets : Theory/Handson/Comm/Behavioral/Critical thinking/Problem solving : Properties/Configuration :: Client-Profiles
+
+1. What is a client profile in Solace?
+
+https://docs.solace.com/Cloud/client-profiles.htm
+
+Client-username : The pub-sub services/application of the business :: connect + communicate with Message-VPN
+
+a. ACL Profile : What is allowed | denied :: Create a policy matrix :: Client-username vs Objects [publish/subscribe/client connect]
+
+
+Client Profiles :: Common features/configurations that can applied to different client-usernames || Grouped together
+
+Solace --> Client Profile 
+
+Where can I add the client-profile?
+
+Solace Console --> Manage tab --> Client Profile
+
+Every solace account in PubSub+ Cloud :: Comes with a default client profile
+
+Is it a possible to create a new client profile ? 
+
+Queues [queue 06] --> Binded with an owner [owner --> client-username [cu03]] --> [cu03 --> ACL profile [permissions : allow/deny] + client- profile [set of config]] 
+
+1. Create a new client profile
+2. Create a client username :: Bind the CU with a new ACL profile + Client profile
+3. Create a new queue :: Bind it with owner --> new client username 
+
+client-profile 
+
+client-username
+
+==> Create client profiles using Solace CLI 
+
+enable
+configure
+
+==> Create a client-profile + Configuration
+
+Create a client-profile  : 
+
+create client-profile <name> message-vpn <mvpn-name>
+
+create client-profile cpcli01 message-vpn message-vpn-01
+
+create client-profile cpcli01 message-vpn message-vpn-01
+
+ Invalid command input
+        create client-profile cpcli01 message-vpn message-vpn-01
+               ^
+         -> unknown command, or command not available in current mode
+
+
+The restrictions placed in the Developer Service Type 
+
+Developer Service Type  --> You cannot access :: Solace CLI + Solace PubSub+ Cloud
+
+- event insight :: Developer service class :: Account is not supported
+- Logs being created : Can I open the log files :: Developer Service type :: NO
+
+Solace --> Logs --> Migrate the log files from your a/c to DataDog/Splunk or any other server :: Feature is not supported in the developer service type
+
+==> Client-Profile :: Create the client-profile using GUI BUT not using Solace CLI
+
+Access Control :
+
+- Client-usernames
+- ACL profiles
+- Client profiles
+
+All these config details, all the permission details, all client username details :: Where are they stored ?  
+
+
+Solace Console --> Manage --> Access Control --> Client-Authentication
+
+Client Authentication :: Validating :: Against the data :: Data/records that are present ::
+
+A. Internal database - Internal database. Authentication is against Client Usernames.
+
+B. LDAP - LDAP authentication. An LDAP profile name must be provided.
+
+C. RADIUS  - RADIUS authentication. A RADIUS profile name must be provided.
+
+
+What is LDAP :: Light-Weight Directory Access Protocol 
+
+
+==> How do you authenticate users in Windows OS?
+
+==> How do you authenticate users in Linux OS?
+
+--> Public Keys or Private Keys :: Key pairs
+
+--> Certificates :: SSL Certificate or TLS Certificate :: Verizon/Symantec
+
+Keys :
+
+- Shared flat :: Key to enter the door [common key - Public key] + Closet --> Personal Key [Private key] 
+
+Communication :: Client [each of the client instances --> Private Keys] <--> Server [Public Key]
+
+
+Handshake :: Public <==> Private :: matches :: Connection is successful
+
+- Properties of the key :: These keys are encrypted and NOT plain text [HASH :: One way algorithms] 
+
+*nix env :: Key pairs for authentication :: machine[laptop] <==> servers :: USB Keys
+
+How we can create our own key? :: Windows --> PuttyGen
+
+PuttyGen download link : https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
+
+Generate a key :: 
+
+Click on generate --> Move the mouse randomly in the empty space
+
+Communication :: Encrypted 
+
+My URI [Publisher] ---------[EBS]--------> Server/Subscriber :: Https :: Valid certificates --> ensure that a specific algorithms are used for encryption
+
+128-bit encryption
+256-bit encryption
+512-bit encryption 
+
+Certificates :: Valid for a specific period of time 
+
+Validity period :
+
+Issued On	Saturday, July 16, 2022 at 12:42:31 PM
+Expires On	Thursday, August 17, 2023 at 12:42:31 PM
+
+My URI [Publisher] ---------[EBS]--------> Server/Subscriber :: Where are the solace certificates + what type of certificates does Solace support?
+
+Solace Console --> Manage --> Certificate Authorities 
+
+Types of certificate that Solace uses OOTB [out of the box]:
+
+a. Client Certificate Authorities : Client Certificate Authorities are used to authenticate the identity of the "client to the server"
+
+b. Domain certificate authorities : Domain Certificate Authorities authenticate the identity of the event broker service to clients and other event broker services
+
+NOT allowing to load a sample certificate file ::  validating the "identity of the client to the server."
+
+Client --> My account --> Add a demo certificate
+<NO HANDSHAKE --> VALIDATION --> NULL]
+
+Server --> Solace PubSub+ Host --> Nothing on the server side for the cert
+
+MCQ : Solace + Solace CLI + What is the max size of Queue/Topic Template name? + REST + Microservices + Different port numbers
+
+- Read
+- Start making own notes
+- Read the questions carefully 
+
+Scenarios :: Solace CLI :: Read the steps that needs to be done
+
+Create the object :: Use a specific name 
+
+Video files :: email : name the video files in a logical manner :: 
+
+S1_v1
+S1_v2
+S1_v3
+S2_v1
+S2-V2
+S2_v3
+
+Whenever the scenario ends :: within 15 mins, the email should be sent
+
+dibya@ecdzone.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,468 @@
+1. Solace Appliances 
+
+-> What are the Solace appliances 
+-> What do the Solace appliance tries to achieve
+-> What are the versions of the Solace Appliances? 
+-> What are the architecture + components that are present in Solace Appliance
+
+https://solace.com/products/event-broker/appliance/
+
+https://solace.com/company/customers/rbc/
+
+Transactions : Computer Transactions ==> Storage + Compute capacity + Network capacity
+
+Storage capacity : HDD/Data storage
+Compute capacity : Processing power
+Network Capacity : Networking aspects :: Physical ports + Communication + Failover mechanism 
+
+What are the different types of infrastructure present : Cloud Env --> AWS 
+
+- Hardware
+- Software
+- Network
+
+Cloud env :: Pay-as-you-go :: More the pay, more the features 
+
+Solace PubSub+ :: Different types of accounts : 
+
+- Higher the monthly billing, more is the service
+
+Developer Class ---> Enterprise 500k, Enterprise 250K 
+
+Solace Appliances : 2 different versions :
+
+- v3530 --> Working on 
+- v3560
+
+Solace Appliance : 10 years :: v3260 --> v3530/v3560
+
+
+- HAA
+- data loss :: Guaranteed delivery or persistent storages
+- Fault tolerance
+- What happens if the data center or the hardware devices goes for a toss : Backup comes into the picture
+
+What is the meaning of Throughput + Latency?
+
+
+Solace Appliances :
+
+- Persistent messaging
+- Non-persistent messaging
+
+Guaranteed messaging/Persistent messaging ::
+
+a. Throughput would be lesses than non-persistent
+b. Point-point 
+
+Fan-out : Concept Maximum number of Digital inputs --> outputs :: Logical + Physical
+
+Solace Console :: High Availability :: Single Node
+
+High Availability :: Single Node --> Multi Node Routing [MNR]
+
+Some of the concepts :
+
+- FPGAs
+- Data Plane
+- Control Plane
+- field-serviceable power supplies
+- Solid-state disks
+
+--> What is control plane and what is data plane? : Admin 
+
+- Control
+- data plane
+- management plane : Monitoring plane :: Event insights + DataDog/Splunk + show <object/thing> details
+
+Control Plane :: 
+
+- Decides how the data is managed --> manages that how the data is routed in the env/network
+- Would use different protocols to managge the comm between the different systems
+- Identify the routes
+- Data Management --> Decisions to be taken : How the data routing + processed + routing
+
+How does it identify what is the best possible route? :: OSPF
+
+OSPF Protocol :: Open Shortest Path First
+
+Hyd :: hbo.com ---[hops1]------[hops2]---------> [SFO DC] 
+
+Networking ? 
+
+Data Plane :
+
+- For the communication :: Different systems
+- LAN [Ethernet] or WiFi
+- Forwarding the actual IP packets :: created on the plane
+
+Solace Appliances --> FPGAs features
+
+FPGA : 
+
+- Field Programmable Gate Array
+- Used in digital and logical units
+- IC : Integrated Circuit
+
+Why Solace appliance uses FPGA? 
+
+- Customers can configure/reconfigure after the manufacturing 
+- Support available for field-programmable 
+
+IC's :: Most of the OEM's : They do not allow :: customization by the customers
+
+Who are the customers : You and ME? OR Using the solace appliance in DC's 
+
+Field-Programmable Power Services
+
+Solid State Disk [SSD] :
+
+- Light-weight 
+- Power efficient 
+- How the vibrations are handled :: Does it having moving parts --> Minimal 
+- In case of accidental drops : survival chances are better
+- Digital Memory Chips
+
+What are the some of the internal features of these Solace Appliances :
+
+a. FPGA IC's
+b. Field Programmable Support
+c. Different plane supports - Control/Data/Management
+d. Solid State Disk
+f. High N/w capacity
+g. HAA 
+h. Support multi protocol/multi language
+i. Both persistent & non-persistent data storages
+
+Can we see the appliances :: YES 
+
+Where are the devices placed :: Data Center --> How are they placed in the Data Centers :: Rack Mounted Devices
+
+- What are Racks?
+- What are Rack Mounted Devices?
+- What are the type of Rack Mounts
+
+Solace Appliance v3530/v3560 :: Rack Mounted Devices
+
+--> Appliances :: Would have different components 
+
+--> You ideally MAY NOT be directly working with a hardware device :: 
+
+Whenever changes in the happens --> Hardwares configuration has to be managed by the Solace Admin :: 
+
+- Initial Setup
+- Services : Up and down
+- Replacement :: What are the config to be handled
+
+Front Panels of v3530 :
+
+a. Front-end LED : 3 states 
+
+-  Color - Blue : Appliance is running well
+-  Color - Red : Issues
+-  Blinking/flashing blue - Hardware is initialized BUT software is NOT initialized
+
+b. Rear Panel :
+
+- On/Standby Button
+- 2 power supply slots
+- NAB Slots [Network Accelerator Blade] 
+- HBA Slots [Host Bus Adapter]
+- ADB Slot [Assured Delivery Blade] 
+- 2 Blade Status LED's [1-3][4-6] 
+
+SOP : Standard Operating Procedure
+
+NAB : Network Accelerator Blade
+ADB : Assured Delivery Blade
+HBA : Host Bus Adapter
+TRB : Topic Routing Blade
+
+
+Solace CLI : 
+
+Is it possible to check the hardware details? :: show hardware detail
+
+What is the version that is used by Appliances? :: show version
+
+PubSub+ CLI --> Host :: VM running on Solace Cloud :: There is NO appliance
+
+What is the default EBS software ver being used : 10.4
+
+Appliances : Different versions of the software being installed --> Default or upgraded or downgraded ver :: based on the objectives to be attained
+
+command : show version
+
+Software installed in the appliance : Data plane/control plane/management plane
+
+==> What is Blade? IBM/Dell/DXC -- Blade Servers
+
+Blade --> Bleed --> High Performance Engineering
+
+Deliver scalability and "high density" with this modular blade server. Designed for HPC, XaaS, and virtualization.
+
+High Density --> Associated with grouping of the resources [CPU/RAM/Storage/Network/etc] 
+Modular feature --> Scale-in or scale-out on-demand basis [on need basis] 
+Overall concept of blades --> HPC :: High performance computing
+
+HPC --> 
+
+- Extreme high availability
+- Extreme high transactions/data transfer
+- Speed 
+
+v3530 --> How many slots : 6
+v3560 --> How many slots : 8
+
+1. What is Network Accelerator Blade? 
+
+- All the actions/activities related to High Speed I/O in Solace deployments
+- Manages all the protocols + Protocol Terminations [SMF/Routing/Finding the best path/Internal]
+- Manage : Network Adapters + PCI's [Hardware slots : Mother board] 
+- Management Plane
+
+2. NAB Videos :
+
+https://www.youtube.com/watch?v=P_RB-eVhvW0
+https://www.youtube.com/watch?v=39fhF4ikEKo&t=211s
+
+
+Power --> Cooling process
+
+If upgraded or replaced :: How the power consumption gets modified at the peak of the performance? :: Power Envelope
+
+--> No need to change your apps if horizontally scaling your middleware? 
+
+https://community.fs.com/blog/understanding-link-aggregation-control-protocol.html
+
+LAG : Link Aggregation Group 
+
+LACP : Link Aggregation Control Protocol
+
+Hardwares --> Physical ports : 6-8 
+
+- How the throughput from multiple network connections can be combined together and can be fed into a single connection
+- LAG ensures that :: There is redundancy --> In case of failovers, if one of the physical links, the other physical links can work and take backup role
+
+LAG :: Process --> Trunking + Bundling + Bonding + Channeling
+
+Solace --> Appliance --> NAB --> LAG for communication :: High network bandwidth + HAA 
+
+Active & Standby :: Solace --> HAA :: Backup + Redundancy 
+
+In a network : 1 active LAG + Many standby LAG
+
+If an active fails, then one of the standby's will take the active role
+
+Network :: PDC vs BDC
+
+PDC : Primary Domain Controller
+BDC : Backup domain controller
+
+In a network : 1 PDC and many BDC || If the PDC fails, one of the BDC's ------> PDC
+
+Practice the CLI + GUI activities ::
+
+1. Queues
+Queue-template
+Config
+
+2. Client-usernames + ACL + CP
+Bind different CU with different ACL + CP
+Assign the permissions : Client connect/Pub/Sub
+
+show?
+
+??
+
+Different exec levels
+
+Play with the configurations
+
+What is the role of Bridge in Solace? 
+
+Data Streaming : yes or NO :: scenario about data streaming? 
+
+Solace CLI -->  Create queue 
+
+What is the max size of the queue name? 
+
+Solace --> Solace handles High Message Volumes? + How is it scalable? 
+
+- Message distribution can happen across multiple brokers
+- DMR : Dynamic Message Routing --> Bridges 
+
+What are the components that makes Solace architecture distributed? 
+
+What are the steps to be followed in Solace CLI to create client-username? 
+
+Solace [EBS : software/hardware] :: client-username, acl-profile, client-profile
+
+Solace [PubSub+ Solace Cloud]  users? :: 
+
+- Where can we create Solace users? 
+- Is it possible to invite users in my account? 
+- Who takes care of the user level permissions for Solace? 
+
+- Invite users into our accounts
+- Invite the users --> give some permission to the users : Viewer/Admin/Event Portal/Mission Control 
+
+Tech feature : Solace Users --> Permissions for the user access :: IAM : Identity and Access Management 
+
+IAM : Identity and Access Management :: Solace User managment [internal] :: IAM 
+
+
+IAM vendors:  Microsoft/Oracle/Sailpoint 
+
+How does Solace ensure message order within a topic for subscriber? 
+
+How Solace manages the message-queues ? 
+
+Solace [unique sequence number to each message [message-ID]] --> msg-id
+
+message priorities : 0-9
+
+message being published in a queue - 1 part 
+
+how to specify the priorities for the message being queued - 2 part
+
+
+MsgID - 1
+
+Message Priority - 2
+
+MsgID - 10
+
+Message Priority - 9
+
+Platinum member of a bank --> Call center number :: Privilege :: HIGH priority : less than 30 sec
+
+Simple member of a bank --> Call center number  :: LOW priority : less than 10 mins
+
+What's the role of Message-VPN in Solace? 
+
+Who will manage the Topic endpoints & queues?  :: Users --> manage access 
+
+- Solace Admin : Manage any of the resource/objects in Solace env
+- Developer service type a/c --> Creator of the a/c --> Admin --> manage all resources
+
+Mission Control --> Cluster Manager 
+
+- In this developer service a/c --> invite users --> assign IAM permissions :: 
+
+What is the role of an API in Solace messaging? 
+
+subscriber.session = solace.SolclientFactory.createSession({
+    // solace.SessionProperties
+    url:      hosturl,
+    vpnName:  vpn,
+    userName: username,
+    password: pass,
+});
+// define session event listeners
+    /*...see section Session Events...*/
+// define message event listener
+    /*...see section Receiving a message...*/
+// connect the session
+try {
+    subscriber.session.connect();
+} catch (error) {
+    subscriber.log(error.toString());
+}
+
+Where do we hold all the logic or the definitions programmatically that are used by API? :: SDK : Software Development Kit
+
+API --> Try to use the functions [defined] --> SDK 
+
+==> Is it possible to configure access type of queues in Solace CLI? :: YES --> HOW? 
+
+access-type [exclusive | non-exclusive] 
+
+Queue --> Access type is defined 
+
+can i modify the access type directly? :: NO --> Shut down the queue
+
+Guaranteed delivery in case of network failure ? :: YES
+
+S1 : Where is the failure arising : Pub-EBS --> Boundary defition --> 
+
+S2 : Where is the failure arising : EBS-Sub : ACK --> Subscriber has not "process" the message --> ACK is not sent and the message remains in the message spool of EBS
+
+S3 : EBS Software OR EBS Appliance : Appliance --> ADB : Assured Delivery Blade 
+
+What is the maximum size of queue that it can hold? == What is the range of message queued quota in Queue settings : 0 - <max number :: 6M MB> 
+
+5000 - default
+
+Difference between direct vs guaranteed messaging
+
+What is the package that we can use in NodeJS to implement Async feature? Promise-Resolve-Await :: async
+
+fs : file systems
+http : request-response
+sync : NO package
+async : async :: Promise-Resolve-Await
+
+12/08 : 
+
+1. All in TEAMS meeting from 0900 
+2. MCQ : 0930-1000 
+
+Break till 1015
+
+3. Scenario : 1030-1130  
+4. Upload + share the videos by 1145 : dibya@ecdzone + Divya [@alchemysolutions]
+
+Video recording :
+
+a. Meaningful video file names
+b. Time seen in the video recording
+
+Scenario questions :: end goal : 1,2,3,4,5 : not needed : 1-3-2-5 :: Final goals
+Use the names for the objects --> exact names as asked for 
+
+Logical intermediary steps 
+
+5. Break till 12 noon - EOD
+
+Post 12 noon :: Continue with your daily activity tracker 
+
+Monday : 1115-1130
+
+All of you --> Send an individual email with Github updates
+
+
+Solace Developer  - Application :: How the services are communicated/schema/application context + Solace SDK/API
+
+Solace Admin - Solace PubSub+ Cloud + CLI + Actions with object/things/configurations/monitoring + Hardware
+
+Several services --> pushing the messages + consuming 
+
+Client-usernames :: NEVER touch the solace pubsub+ platform
+
+Client-username [services] :: publish-topic/subscribe-topic/push to queues/message speed/etc etc
+
+
+Messages --> Pub --> EBS --> Sub
+<messages> :: <API - WSS> : Binded with certificates : 
+
+- NOT any more plain text
+- JP Morgan Chase --->   <Solace EBS> -----> <Partners/subs/consumers>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,9 @@
+Dates : 11/08/2023
+
+1. Read the appliance data sheet + Read the links shared in program notes for different hardware features
+2. Read about Racks + Types of Racks + FPGA + Different planes
+3. Read and refer about :
+
+a. NAB, NAB Replacement and NAB Configs :
+
+https://docs.solace.com/Appliance/Hardware-Maintenance-Tasks/Replacing-NABs.htm
