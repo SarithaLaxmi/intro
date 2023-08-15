@@ -1,0 +1,192 @@
+Software Engineering : Use Case Diagrams :
+
+- Flow Diagrams
+- ERD 
+- Class Diagrams
+
+Zomato App ::
+
+Different config that we will be using :: Why that value is being : 
+
+Why :: 
+
+Queue1 : Guaranteed delivery
+Q2 : P2P 
+
+--> New_order_service [pub] --> Connected topics + queues + Subscribers + message-spool + message VPN [different config] 
+
+Connected topics + queues + Subscribers :: What are the diffent client-usernames + client-profiles + acl-profiles]
+
+Bridge 
+
+
+Each participants : 7-8 topics
+
+Group 3 :
+
+1. Topic : News Portal
+
+a. News category subscriptions 
+b. Different news topic preferences
+c. Paid vs Free service 
+d. Customer service : Customer support [tickets can be raised ---> Subscriber services]
+
+==> Beautify :: Ready code base available ==> Python ==> Small module [use the entire code base ==> connect to the host/topics/queues] :: represent a workflow 
+
+Bridges [Dynamic Messaing Routing] : Multiple Event broker services
+
+Customer Login ==> EBS1 
+
+News-Details ==> EBS2
+
+Distributed Systems/High Availability Systems : 
+
+- Distribute the loads across different EBS/Message-VPN
+- Business domain actions ==> Customer | News-topic | Payment Services
+
+Type of comm/message exchange pattern : Different types of queues :
+
+- Guaranteed queues
+- P2P
+
+Grp 1: 
+
+1. Topic : Retail E-com
+
+
+https://github.com/SolaceLabs/covid19-stream-processors
+
+
+Queue Creations ::
+
+2 categories :
+
+1st category:
+
+a. Electronics1 - Mobile
+
+grp1/retail/neworder/electronics/mobile/* - All brand new mobile orders
+
+grp1/retail/neworder/electronics/mobile/refurbished/* - All refurbished new mobile orders
+
+b. Electronics2 - TV
+
+grp1/retail/neworder/electronics/tv/*
+
+2nd category :
+
+Groceries
+
+grp1/retail/modifyorder/items/> - Orders modified --> In a specific basket, what are the items modified
+
+
+grp1/retail/modifyorder/items/400100-> - Orders modified --> In a specific basket, what are the items modified in zipcode : 400100
+
+Queue --> DMQ
+
+CodeLabs : https://codelabs.solace.dev/
+
+Grp2 and Grp4
+
+Grp2 : University
+
+Grp4 : Bank
+
+ACL Matrix :: 
+
+- CLient-username :: Allowed | Deny :: Features :: Topics Endpoints + Queue Templates [filter-names] 
+
+Hardware :: Banking project :: How many -physical ports --> 6 ports
+
+--> In the 6 ports :: What are the commands that you will be using to configure the ports + IP addresses of the 6 ports
+
+--> Replace the NAB :: 4 ports ---> 8 ports
+
+
+Multiple client-usernames :: Different services :: Each client-usernames :: Different ACL Profiles + Client Profiles :: Why this binding is happening 
+
+Queue template --> Name-filter --> balance/user*/*
+
+user1 : 100
+user2 : 300
+
+Solace Console --> Cluster Manager --> EBS --> Status --> Manage Tab --> Bridges
+
+What are the different types of Bridges :
+
+- Static Bridge
+- Dynamic Bridge
+- Kafka Bridges
+
+What are the different ways by which we can connect to the bridges : 
+
+https://docs.solace.com/Features/VPN/Message-VPN-Bridges.htm
+
+https://docs.solace.com/Features/VPN/Managing-Message-VPN-Bridges.htm
+
+
+Linking two Message VPNs with different names to enable Direct or Guaranteed messages
+
+
+Linking two Message VPNs with the same names on two separate event brokers to enable Guaranteed messages published to one Message VPN to be delivered to the other Message VPN.
+
+What are the different types of Bridges :
+
+- Static Bridge
+- Dynamic Bridge
+- Kafka Bridges
+
+What are the different ways by which we can connect to the bridges : 
+
+
+- Manual Bridge
+- GUI :: Click to Connect
+
+- If the priviliges are available :: Solace CLI
+
+Bridges :: Different EBS/message-VPN :: Concepts :
+
+- Local-VPN [message]
+- Remote-VPN [message]
+
+Connect to the remote bridge :
+
+-> Connect using the Broker URL
+-> solace cloud credentials --> Use another Solace PubSub+ account
+
+Host List : mr-connection-afoaqbshvkc.messaging.solace.cloud:55443
+
+Remote Host name : mr-connection-afoaqbshvkc.messaging.solace.cloud
+
+55443 : Secure SMF 
+
+if the client-username has the permission to connect to a bridge? 
+
+Access-Control :: Where in the access-control ? --> NOT in ACL-Profile 
+
+Access-Control :: Where in the access-control ? --> 
+
+Client Profile --> Configuration property --> Connect as a Bridge :: [True or False]
+
+Create Profile --> Configuration [Connect as a Bridge] --> Used by Client-usernames --> 
+
+- 2 solace accounts
+
+Create the bridges
+
+Local a/c ==> Enabler for the bridge
+
+34.93.117.63:55443
+
+
+The bridge is created --> But on the Remote Message :: Bridge status is DOWN ----> UP:: 
+
+How to ensure the bridge status is UP on both the sides? 
+
+Why the bridge status down :
+
+- Is it a config issues?
+- Estiablishing Connection Issues ? 
+- Config params
+- Client Profile --> Client username issues 
+--> Other factors?

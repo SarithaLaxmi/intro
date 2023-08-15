@@ -1,0 +1,35 @@
+Date : 14/08/2023
+
+
+1. Refer for Capstone :
+
+https://github.com/SolaceLabs/covid19-stream-processors
+
+https://docs.solace.com/Cloud/Event-Portal/event-portal-sample-application-domains.htm
+
+2. For reference :
+
+https://codelabs.solace.dev/
+
+3. Solace Bridge Link : Refer + Practice 
+
+https://docs.solace.com/Features/VPN/Message-VPN-Bridges.htm
+https://docs.solace.com/Features/VPN/Managing-Message-VPN-Bridges.htm
+
+4. Solace Bridge :
+
+https://docs.solace.com/Features/VPN/Message-VPN-Bridges.htm
+https://docs.solace.com/Features/VPN/Message-VPN-Bridges-Overview.htm
+https://docs.solace.com/Features/VPN/Managing-Message-VPN-Bridges.htm
+
+5. The bridge is created --> But on the Remote Message :: Bridge status is DOWN :: 
+
+How to ensure the bridge status is UP on both the sides? 
+
+Why the bridge status down :
+
+- Is it a config issues?
+- Estiablishing Connection Issues ? 
+- Config params
+- Client Profile --> Client username issues 
+--> Other factors?
